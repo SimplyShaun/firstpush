@@ -2,37 +2,40 @@ import java.util.Scanner;
 
 public class substringComparisons {
 	public static String getSmallestAndLargest(String s, int k) {
-		String smallest = "";
-		String largest = "";
+		String smallest = s.substring(0, k);
+		String largest = s.substring(0, k);
 
 		// 1st attempt
 		for (int i = 0; i < s.length() - k; i++) {
-			if (s.substring(i, i + k).compareTo(s.substring(i + 1, i + k + 1)) < 0) {
-				System.out.println(i + " " + s.substring(i, i + k) + " " + s.substring(i + 1, i + k + 1));
-				smallest = s.substring(i, i + k);
-				System.out.println(i + ": s " + smallest);
-			} else {
-				System.out.println(i + " " + s.substring(i, i + k) + " " + s.substring(i + 1, i + k + 1));
-				largest = s.substring(i, i + k);
-				System.out.println(i + ": l " + largest);
+			if (s.substring(i + 1, i + k + 1).compareTo(smallest) < 0) {
+				System.out.println(i + ": " + s.substring(i, i + k) + " & " + s.substring(i + 1, i + k + 1));
+				smallest = s.substring(i+ 1, i + k + 1);
+				System.out.println(i + ": l " + smallest);
+			} if (s.substring(i + 1, i + k + 1).compareTo(largest) > 0){
+				System.out.println(i + ": " + s.substring(i, i + k) + " & " + s.substring(i + 1, i + k + 1));
+				largest = s.substring(i + 1, i + k + 1);
+				System.out.println(i + ": s " + largest);
 			}
+			
 		}
 		
+		/*
 		System.out.println();
 
 		// 2nd attempt
 		String temp = s.substring(0, k);
 		for (int i = 0; i < s.length() - k; i++) {
 			if (temp.compareTo(s.substring(i + 1, i + k + 1)) < 0) {
-				System.out.println(i + " " + temp + " " + s.substring(i + 1, i + k + 1));
+				System.out.println(i + ": " + temp + " & " + s.substring(i + 1, i + k + 1));
 				smallest = temp;
 				System.out.println(i + ": s " + smallest);
 			} else {
-				System.out.println(i + " " + temp + " " + s.substring(i + 1, i + k + 1));
+				System.out.println(i + ": " + temp + " & " + s.substring(i + 1, i + k + 1));
 				largest = temp;
 				System.out.println(i + ": l " + largest);
 			}
 		}
+		*/
 
 		return smallest + "\n" + largest;
 	}
